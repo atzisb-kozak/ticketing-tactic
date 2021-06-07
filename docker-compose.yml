@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  webapp:
+    container_name: ticketingWebapp
+    build:
+      context: ./ticketing-webapp
+      dockerfile: docker/Dockerfile.dev
+    image: ticketing-wabapp
+    tty: true
+    restart: always
+    working_dir: /usr/src/app
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./ticketing-webapp/:/usr/src/app
+    networks:
+      - ticketingNetwork
+  api:
+    container_name: ticketingApi
+    build:
+      context: ./ticketing-api
+      dockerfile: docker/Dockerfile.dev
+    image: ticketing-api
+    tty: true
+    restart: "always"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ticketing-api/:/usr/src/app
+    networks:
+      - ticketingNetwork
+  db:
+    image: "mongo:4.4.6"
+    container_name: ticketingDatabase
+    restart: "always"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "toor"
+    volumes:
+      - ./database-volumes:/data/db
+    networks:
+      - ticketingNetwork
+
+networks:
+  ticketingNetwork:
+    driver: bridge

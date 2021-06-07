@@ -1,0 +1,10 @@
+FROM node:lts-buster
+
+WORKDIR /usr/src/app
+COPY . .
+
+RUN npm install -g @nestjs/cli
+ENV NPM_CONFIG_LOGLEVEL warn
+RUN npm install --force
+
+CMD [ "npm", "run", "start" ]
