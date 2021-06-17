@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './user/user.module';
-import { set } from 'mongoose'
-
-set('useFindAndModify', false);
+import { TicketModule } from './ticket/ticket.module';
+import { FilesModule } from './files/files.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [MongooseModule.forRootAsync({
@@ -13,7 +12,7 @@ set('useFindAndModify', false);
 			uri: 'mongodb://root:toor@db:27017/ticketing?authSource=admin',
 			
 		})
-	}), UserModule],
+	}), TicketModule, FilesModule, AuthModule],
 	controllers: [AppController],
 	providers: [AppService],
 })
