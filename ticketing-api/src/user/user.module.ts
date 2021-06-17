@@ -23,7 +23,8 @@ import { hash } from 'bcrypt';
 			}
 		])
 	],
-	controllers: [UserController],
-	providers: [UserService],
+	controllers: [ UserController ],
+	providers: [ UserService ],
+	exports: [ UserService ],
 })
 export class UserModule {}

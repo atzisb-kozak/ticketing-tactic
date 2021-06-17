@@ -14,8 +14,12 @@ export class UserService {
 		return user.save();
 	}
 
-	async findUser(firstname: string): Promise<User[]> {
-		return this.userModel.find({ "firstname": firstname}).exec();
+	async findUserByName(firstname: string): Promise<User[]> {
+		return this.userModel.find({ "firstname": firstname }).exec();
+	}
+
+	async findUserByUsername(username: string): Promise<User> {
+		return this.userModel.findOne({ "username": username }).exec();
 	}
 
 	async updateUser(username: string, updateUserDto:UpdateUserDto): Promise<User> {

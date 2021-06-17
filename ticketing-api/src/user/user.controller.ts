@@ -16,7 +16,7 @@ export class UserController {
 
 	@Get(':firstname')
 	async findUser(@Param('firstname') firstname: string): Promise<User[]> {
-		return this.userService.findUser(firstname);
+		return this.userService.findUserByName(firstname);
 	}
 
 	@Patch(':username')

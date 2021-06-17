@@ -3,6 +3,12 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
+/**
+ * User representation to store database
+ *
+ * @export
+ * @class User
+ */
 @Schema()
 export class User {
 	@Prop()
