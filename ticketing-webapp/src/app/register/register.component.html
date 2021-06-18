@@ -1,0 +1,50 @@
+<div class="card-center">
+	<mat-card class="register-card">
+		<mat-card-title>Register Now</mat-card-title>
+		<mat-card-content class="login-content">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<div class="form-group">
+					<mat-form-field appearance="fill">
+						<mat-label>Firstname</mat-label>
+						<input matInput formControlName="firstname" required [ngClass]="{ 'is-invalid': submitted && form.firstname.errors }">
+						<mat-error *ngIf="submitted && form.firstname.errors">You must enter a value</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="form-group">
+					<mat-form-field appearance="fill">
+						<mat-label>Lastname</mat-label>
+						<input matInput formControlName="lastname" required [ngClass]="{ 'is-invalid': submitted && form.lastname.errors }">
+						<mat-error *ngIf="submitted && form.lastname.errors">You must enter a value</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="form-group">
+					<mat-form-field appearance="fill">
+						<mat-label>Username</mat-label>
+						<input matInput formControlName="username" required [ngClass]="{ 'is-invalid': submitted && form.username.errors }">
+						<mat-error *ngIf="submitted && form.username.errors">You must enter a value</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="form-group">
+					<mat-form-field appearance="fill">
+						<mat-label>Email</mat-label>
+						<input matInput formControlName="email" required [ngClass]="{ 'is-invalid': submitted && form.email.errors }">
+						<mat-error *ngIf="submitted && form.email.errors">You must enter a value</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="form-group">
+					<mat-form-field appearance="fill">
+						<mat-label>Password</mat-label>
+						<input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+						<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+							<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+						</button>
+					</mat-form-field>
+				</div>
+				<div class="form-group">
+					<button mat-raised-button color="primary">Register</button>
+					<button mat-stroked-button color="accent" (click)="back()">Login</button>
+				</div>
+			</form>
+		</mat-card-content>
+	</mat-card>
+</div>
